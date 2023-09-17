@@ -1,5 +1,7 @@
+import 'package:dartz/dartz.dart';
+import 'package:move_app/domain/entities/app_error.dart';
 import 'package:move_app/domain/entities/movies_entity.dart';
 
 abstract class MovieRepository {
-  Future<List<MovieEntity>?> getTrending();
+  Future<Either<AppError, List<MovieEntity>?>> getTrending();
 }
