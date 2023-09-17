@@ -6,6 +6,7 @@ void main() {
   Client apiClient = Client();
   MovieRemoteDataSource dataSource = MovieRemoteDataSourceImpl(apiClient);
   dataSource.getTrending();
+  dataSource.getPopular();
   runApp(const MyApp());
 }
 
