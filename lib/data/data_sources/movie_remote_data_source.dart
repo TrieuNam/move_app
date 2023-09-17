@@ -1,8 +1,5 @@
-import 'dart:convert';
 
-import 'package:http/http.dart';
 import 'package:move_app/data/core/api_client.dart';
-import 'package:move_app/data/core/api_constants.dart';
 import 'package:move_app/data/models/movie_model.dart';
 import 'package:move_app/data/models/movies_result_model.dart';
 
