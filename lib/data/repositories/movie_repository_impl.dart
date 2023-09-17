@@ -20,4 +20,34 @@ class MovieRepositoryImpl extends MovieRepository {
       return Left(AppError("Something went wrong"));
     }
   }
+
+  @override
+  Future<Either<AppError, List<MovieEntity>?>> getComingSoon() async {
+    try {
+      final movies = await remoteDataSource.getComingSoon();
+      return Right(movies);
+    } on Exception {
+      return Left(AppError("Something went wrong"));
+    }
+  }
+
+  @override
+  Future<Either<AppError, List<MovieEntity>?>> getPlayingNow() async {
+    try {
+      final movies = await remoteDataSource.getPlayingNow();
+      return Right(movies);
+    } on Exception {
+      return Left(AppError("Something went wrong"));
+    }
+  }
+
+  @override
+  Future<Either<AppError, List<MovieEntity>?>> getPopular() async {
+    try {
+      final movies = await remoteDataSource.getPopular();
+      return Right(movies);
+    } on Exception {
+      return Left(AppError("Something went wrong"));
+    }
+  }
 }
