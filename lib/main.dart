@@ -6,6 +6,7 @@ import 'package:move_app/data/data_sources/movie_remote_data_source.dart';
 import 'package:move_app/data/repositories/movie_repository_impl.dart';
 import 'package:move_app/domain/entities/app_error.dart';
 import 'package:move_app/domain/entities/movies_entity.dart';
+import 'package:move_app/domain/entities/no_params.dart';
 import 'package:move_app/domain/repositories/movie_repository.dart';
 import 'package:move_app/domain/usecases/get_trending.dart';
 
@@ -15,7 +16,7 @@ void main() async {
   MovieRepository movieRepository = MovieRepositoryImpl(dataSource);
   GetTrending getTrending = GetTrending(movieRepository);
   final Either<AppError, List<MovieEntity>?> eitherResponse =
-      await getTrending();
+      await getTrending(NoParams());
   eitherResponse.fold((l) {
     print('error');
     print(l);
