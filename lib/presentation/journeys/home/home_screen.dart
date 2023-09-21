@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:move_app/di/get_it.dart';
-import 'package:move_app/presentation/blocs/movie_carousel_bloc.dart';
-import 'package:move_app/presentation/blocs/movie_carousel_event.dart';
-import 'package:move_app/presentation/blocs/movie_carousel_state.dart';
+import 'package:move_app/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
+import 'package:move_app/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
+import 'package:move_app/presentation/blocs/movie_carousel/movie_carousel_event.dart';
+import 'package:move_app/presentation/blocs/movie_carousel/movie_carousel_state.dart';
 import 'package:move_app/presentation/journeys/home/movie_carousel/movie_carousel_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,12 +14,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late MovieCarouselBloc movieCarouselBloc;
+  late MovieBackdropBloc movieBackdropBloc;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     movieCarouselBloc = getItInstance<MovieCarouselBloc>();
+    movieBackdropBloc = getItInstance<MovieBackdropBloc>();
     movieCarouselBloc.add(CarouselLoadEvent());
   }
 
@@ -27,12 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement dispose
     super.dispose();
     movieCarouselBloc.close();
+    movieBackdropBloc.close();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<MovieCarouselBloc>(
-      create: (context) => movieCarouselBloc,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (conext) => movieCarouselBloc),
+        BlocProvider(create: (context) => movieBackdropBloc),
+      ],
       child: Scaffold(
         body: BlocBuilder<MovieCarouselBloc, MovieCarouselState>(
           bloc: movieCarouselBloc,
@@ -42,13 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 fit: StackFit.expand,
                 children: [
                   FractionallySizedBox(
-                    alignment: Alignment.topCenter,
-                    heightFactor: 0.6,
-                    child: MovieCarouseWidget(
-                      movies: state.movies,
-                      defaultIndex: state.defaultIndex,
-                    )
-                  ),
+                      alignment: Alignment.topCenter,
+                      heightFactor: 0.6,
+                      child: MovieCarouseWidget(
+                        movies: state.movies,
+                        defaultIndex: state.defaultIndex,
+                      )),
                   FractionallySizedBox(
                     alignment: Alignment.bottomCenter,
                     heightFactor: 0.4,

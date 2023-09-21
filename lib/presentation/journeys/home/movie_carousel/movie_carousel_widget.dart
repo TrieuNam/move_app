@@ -3,6 +3,7 @@ import 'package:move_app/domain/entities/movies_entity.dart';
 import 'package:move_app/presentation/widgets/movie_app.dart';
 import 'package:move_app/presentation/widgets/movie_app_bar.dart';
 
+import 'movie_backdrop_widget.dart';
 import 'movie_page_view.dart';
 
 class MovieCarouseWidget extends StatelessWidget {
@@ -18,10 +19,19 @@ class MovieCarouseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
+      fit: StackFit.expand,
       children: [
-        MovieAppBar(),
-        MoviePageView(movies: movies, initialPage: defaultIndex,),
+        MovieBackdropWidget(),
+        Column(
+          children: [
+            MovieAppBar(),
+            MoviePageView(
+              movies: movies,
+              initialPage: defaultIndex,
+            ),
+          ],
+        )
       ],
     );
   }

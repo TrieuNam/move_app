@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/movies_entity.dart';
+import '../../../domain/entities/movies_entity.dart';
 
 abstract class MovieCarouselState extends Equatable {
   const MovieCarouselState();
