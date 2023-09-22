@@ -3,7 +3,9 @@ import 'package:move_app/domain/entities/movies_entity.dart';
 import 'package:move_app/presentation/widgets/movie_app.dart';
 import 'package:move_app/presentation/widgets/movie_app_bar.dart';
 
+import '../../../widgets/separator.dart';
 import 'movie_backdrop_widget.dart';
+import 'movie_data_widget.dart';
 import 'movie_page_view.dart';
 
 class MovieCarouseWidget extends StatelessWidget {
@@ -30,6 +32,8 @@ class MovieCarouseWidget extends StatelessWidget {
               movies: movies,
               initialPage: defaultIndex,
             ),
+            MovieDataWidget(),
+            Separtor(),
           ],
         )
       ],

@@ -37,6 +37,6 @@ Future init() async {
 
   getItInstance.registerFactory(() => MovieBackdropBloc());
 
-  getItInstance
-      .registerFactory(() => MovieCarouselBloc(getTrending: getItInstance()));
+  getItInstance.registerFactory(() => MovieCarouselBloc(
+      getTrending: getItInstance(), movieBackdropBloc: getItInstance()));
 }
