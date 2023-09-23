@@ -19,6 +19,7 @@ class MovieApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: ThemeText.getTextTheme(),
         appBarTheme: const AppBarTheme(elevation: 0),
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ThemeColor.royalBlue),
       ),
       home: HomeScreen(),
     );
