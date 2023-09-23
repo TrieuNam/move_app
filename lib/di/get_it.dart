@@ -11,6 +11,8 @@ import 'package:move_app/domain/usecases/get_trending.dart';
 import 'package:move_app/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:move_app/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
 
+import '../presentation/blocs/movie_tabbed/movie_tabbed_bloc.dart';
+
 final getItInstance = GetIt.I;
 
 Future init() async {
@@ -39,4 +41,12 @@ Future init() async {
 
   getItInstance.registerFactory(() => MovieCarouselBloc(
       getTrending: getItInstance(), movieBackdropBloc: getItInstance()));
+
+  getItInstance.registerFactory(
+    () => MovieTabbedBloc(
+      getPopular: GetPopular(getItInstance()),
+      getComingSoon: GetComingSoon(getItInstance()),
+      getPlayingNow: GetPlayingNow(getItInstance()),
+    ),
+  );
 }
