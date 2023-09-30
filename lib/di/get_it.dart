@@ -8,6 +8,7 @@ import 'package:move_app/domain/usecases/get_coming_soon.dart';
 import 'package:move_app/domain/usecases/get_playing_now.dart';
 import 'package:move_app/domain/usecases/get_popular.dart';
 import 'package:move_app/domain/usecases/get_trending.dart';
+import 'package:move_app/presentation/blocs/language/language_bloc.dart';
 import 'package:move_app/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:move_app/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
 
@@ -49,4 +50,6 @@ Future init() async {
       getPlayingNow: GetPlayingNow(getItInstance()),
     ),
   );
+
+  getItInstance.registerSingleton<LanguageBloc>(LanguageBloc());
 }
