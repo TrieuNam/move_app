@@ -19,7 +19,9 @@ class MovieCarouselBloc extends Bloc<MovieCarouselEvent, MovieCarouselState> {
   Stream<MovieCarouselState> mapEventToState(MovieCarouselEvent event) async* {
     if (event is CarouselLoadEvent) {
       final movesEither = await getTrending(NoParams());
-      yield movesEither.fold((l) => MovieCarouselError(), (movies)  {
+      yield movesEither.fold((l) => MovieCarouselError(
+        l.appErrorTyp
+      ), (movies)  {
         movieBackdropBloc.add(MovieBackdropChangedEvent(movies![event.defaultIndex]));
         return MovieCarouselLoaded(
         movies: movies,

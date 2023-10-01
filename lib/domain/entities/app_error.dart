@@ -1,11 +1,14 @@
 import 'package:equatable/equatable.dart';
 
 class AppError extends Equatable {
-  final String message;
+  final AppErrorType appErrorTyp;
 
-  const AppError(this.message);
+  const AppError(this.appErrorTyp);
 
   @override
   // TODO: implement props
-  List<Object> get props => [message];
+  List<Object> get props => [appErrorTyp];
 }
+
+
+enum AppErrorType { api, network}
